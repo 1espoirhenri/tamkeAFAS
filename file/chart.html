@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Biểu đồ Thời gian thực</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+</head>
+<body>
+    <div style="width: 80%; margin: 0 auto;">
+        <canvas id="realtimeChart"></canvas>
+    </div>
+
+    <script>
+        // Cấu hình Firebase
+        var firebaseConfig = {
+            apiKey: "YOUR_API_KEY",
+            authDomain: "YOUR_AUTH_DOMAIN",
+            projectId: "YOUR_PROJECT_ID",
+            storageBucket: "YOUR_STORAGE_BUCKET",
+            messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+            appId: "YOUR_APP_ID"
+        };
+
+        firebase.initializeApp(firebaseConfig);
+
+        // Tham chiếu đến Firebase Realtime Database
+        var database = firebase.database();
+        var dataRef = database.ref('realtimeData');
+
+        // Khởi tạo biểu đồ
+        var ctx = document.getElementById('realtimeChart').getContext('2d');
+        var realtimeChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Dữ liệu thời gian thực',
+                    data: [],
+                    borderColor: 'rgba(75, 192, 192, 1)',
+                    borderWidth: 2,
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'second'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+
+        // Lắng nghe thay đổi dữ liệu thời gian thực từ Firebase
+        dataRef.on('child_added', function(snapshot) {
+            var data = snapshot.val();
+            var time = new Date(data.timestamp);
+            realtimeChart.data.labels.push(time);
+            realtimeChart.data.datasets[0].data.push(data.value);
+            realtimeChart.update();
+        });
+    </script>
+</body>
+</html>

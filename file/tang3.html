@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Fire Alarm System</title>
+    <link rel="stylesheet" href="/lab1/style/style.css">
+    <link rel="icon" type="/lab1/image/png" sizes="32x32" href="/lab1//lab1/image/favicons-removebg-preview.png">
+</head>
+<body>
+    <div id= "header">
+        <ul>
+             <li><a href="./home.html" style="text-decoration: none; color: white;" margin-left: -8%;">Auto Fire Alarm System</a></li>
+             <img src="/lab1/image/logo.gif" id="logo">
+        </ul>
+    </div>
+    <div id= "banner">
+        <div class="tag">
+          <button  id="t1" class="change-background"><b>Tầng 1</b></button>
+          <button   id="t2" class="change-background"><b>Tầng 2</b></button>
+          <button  id="t3" class="change-background" style="background-color: yellow;"><b>Tầng 3</b></button>
+          <button  id="t4" class="change-background"><b>Tầng 4</b></button>
+        </div>
+    </div>
+    <div id= "main"> 
+        <div id="top">
+          <div id="time"> </div>
+           <script>
+            function dongho() {
+            var time = new Date();
+            var gio = time.getHours();
+            var phut = time.getMinutes();
+            var giay = time.getSeconds();
+            if (gio < 10) 
+            gio = "0" + gio;
+            if (phut < 10) 
+            phut = "0" + phut;
+            if (giay < 10) 
+            giay = "0" + giay;
+            document.getElementById("time").innerHTML = gio + ":" + phut + ":" + giay;
+            setTimeout("dongho()", 1000);
+            };
+            dongho();
+          </script>
+          <div id="nd"> 
+            <h1><img src="/lab1/image/nhietdo1.png" class="sensor_info" id="nd1"></h1>
+            <h2>Nhiệt độ</h2>
+          </div>
+          <div id="da"> 
+            <h3><img src="/lab1/image/sensor-removebg.png" class="sensor_info" id="da1"></h3>
+            <h4 style="width: 200px; margin-left: 33%; ">Nồng độ CO2</h4>
+          </div>
+          <div id="lm"> 
+            <h5><img src="/lab1/image/gas-removebg.png" class="sensor_info" id="lm1"></h5>
+            <h6 style="width: 200px; margin-left: -40%; ">Nồng độ khí Gas</h6>
+          </div>
+          <div class="thongso">
+            <h7 id="nhietdo"></h7>
+            <h7 id="khoi"></h7>
+            <h7 id="gas"></h7>
+          </div>
+        </div>
+        <div id="bot">
+          <h1><center><img src="/lab1/image/telephone.png"class="a_125px" id="call"></center>
+            <button type="button" id="btn1" >On</button>
+            <button type="button" id="btn2" >Off</button><br><br>
+        </h1>
+        <h1><center><img src="/lab1/image/elecon-unscreen.gif"class ="a_125px" id="led"></center>
+            <button type="button" id="btn3" >On</button>
+            <button type="button" id="btn4" >Off</button><br><br>
+        </h1>
+        <h1><center><img src="/lab1/image/wateroff-rbg.png" class ="a_125px" id="loa"></center>
+            <button type="button" id="btn5" >On</button>
+            <button type="button" id="btn6" >Off</button><br><br>
+        </h1>
+        <h1><center><img src="/lab1/image/volume-mute.png"class ="a_125px" id="alarm"></center>
+            <button type="button" id="btn7" >Mic</button>
+            <button type="button" id="btn8" >Off</button><br><br>
+        </h1>
+        <h2>SOS</h2>
+        <h3>Tắt điện</h3>
+        <h4>Loa</h4>
+        <h5>Phun nước</h5>
+
+        </div>
+    </div>
+    <div id= "footer">
+         <ul>
+              <li>    <img src="/lab1/image/authorize.png" class="icon-footer" alt="">  Design by 3ranhcon </li>
+              <li>    <img src="/lab1/image/gmail.png" class="icon-footer" alt="">  Contact email: 3ranhcon@gmail.com </li>
+              <li>    <img src="/lab1/image/facebook.png" class="icon-footer" alt="" > <a style="text-decoration: none;" href="https://www.youtube.com/watch?v=dQw4w9WgXcQ">Facebook </a>  </li>
+
+        </ul>
+    </div>
+    <script src="/lab1/js/function.js"></script>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-database.js"></script>
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "iEkmAAseRKDyLIZrZpbtWMW80tDMY5UD9jbn8NLI",
+    authDomain: "phucthinhnenha.firebaseapp.com",
+    databaseURL: "https://phucthinhnenha-default-rtdb.firebaseio.com",
+    projectId: "phucthinhnenha",
+    storageBucket: "phucthinhnenha.appspot.com",
+    messagingSenderId: "891746857835",
+    appId: "1:891746857835:web:80e6ecfead8d329982922e",
+    measurementId: "G-2MFN2STZSC"
+};
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+
+
+<script>
+    
+      
+      var nhietDo_t3 = document.getElementById('nhietdo');
+      var khoI_t3 = document.getElementById('khoi');
+      var gaS_t3 = document.getElementById('gas');
+  
+  
+      dbRef7.on('value', snap => nhietDo_t3.innerText = snap.val());
+      dbRef8.on('value', snap => khoI_t3.innerText = snap.val());
+      dbRef9.on('value', snap => gaS_t3.innerText = snap.val());
+  
+      document.getElementById('t1').style.backgroundColor = '';
+      document.getElementById('t2').style.backgroundColor = ''; // Đặt lại màu của các nút khác
+      document.getElementById('t3').style.backgroundColor = 'yellow';
+      document.getElementById('t4').style.backgroundColor = '';
+  
+      
+    
+  </script>
+<script>
+  //functions
+  var alarm = firebase.database().ref('tang1').child('alarm');
+
+  var dbRef = firebase.database().ref('tang1').child('Nhietdo');  
+  var dbRef2 = firebase.database().ref('tang1').child('Khoi');
+  var dbRef3 = firebase.database().ref('tang1').child('Gas');
+
+  var dbRef4 = firebase.database().ref('tang2').child('Nhietdo');  
+  var dbRef5 = firebase.database().ref('tang2').child('Khoi');
+  var dbRef6 = firebase.database().ref('tang2').child('Gas');
+
+  var dbRef7 = firebase.database().ref('tang3').child('Nhietdo');
+  var dbRef8 = firebase.database().ref('tang3').child('Khoi');  
+  var dbRef9 = firebase.database().ref('tang3').child('Gas');
+
+  var dbRef10 = firebase.database().ref('tang4').child('Nhietdo');
+  var dbRef11 = firebase.database().ref('tang4').child('Khoi');
+  var dbRef12 = firebase.database().ref('tang4').child('Gas');
+  dbRef7.on('value', function (snapshot1) {
+            var nhietdoValue = snapshot1.val();
+            nhietDo_t3.innerHTML = nhietdoValue;
+    });
+    dbRef8.on('value', function (snapshot2) {
+            var nhietdoValue = snapshot2.val();
+            khoI_t3.innerHTML = nhietdoValue;
+    });
+    dbRef9.on('value', function (snapshot3) {
+            var nhietdoValue = snapshot3.val();
+            gaS_t3.innerHTML = nhietdoValue;
+    });
+</script>
+
+<script src="/lab1/js/kiemtra.js"></script>
+
+<script>
+    // Lấy tham chiếu đến nút tầng 1
+    var buttonTang2 = document.getElementById('t2');
+    
+    // Thêm sự kiện click cho nút tầng 1
+    buttonTang2.addEventListener('click', function() {
+        // Chuyển hướng trình duyệt đến một trang web hoặc tài liệu HTML mới
+        window.location.href = 'tang2.html'; // Thay 'ten_file_tab_moi.html' bằng đường dẫn tới tab mới của bạn
+    });
+    </script>
+  <script>
+    // Lấy tham chiếu đến nút tầng 1
+    var buttonTang4 = document.getElementById('t4');
+    
+    // Thêm sự kiện click cho nút tầng 1
+    buttonTang4.addEventListener('click', function() {
+        // Chuyển hướng trình duyệt đến một trang web hoặc tài liệu HTML mới
+        window.location.href = 'tang4.html'; // Thay 'ten_file_tab_moi.html' bằng đường dẫn tới tab mới của bạn
+    });
+    </script>
+    <script>
+      // Lấy tham chiếu đến nút tầng 1
+      var buttonTang1 = document.getElementById('t1');
+      
+      // Thêm sự kiện click cho nút tầng 1
+      buttonTang1.addEventListener('click', function() {
+          // Chuyển hướng trình duyệt đến một trang web hoặc tài liệu HTML mới
+          window.location.href = 'tang1.html'; // Thay 'ten_file_tab_moi.html' bằng đường dẫn tới tab mới của bạn
+      });
+      </script>
+</body>
+</html>
